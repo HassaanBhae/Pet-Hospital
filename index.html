@@ -219,8 +219,9 @@ button { cursor: pointer; font-family: inherit; }
   display: flex;
   align-items: center;
   overflow: hidden;
-
-  background: url("images/hero-bg.webp") center/cover no-repeat;
+  padding-bottom: 5rem; /* space for the overlapping stats banner */
+  /* background: url("images/hero-bg.webp") center/cover no-repeat; */
+  background: url("images/hero-bg2.webp") center/cover no-repeat;
 }
 
 .hero::before {
@@ -306,32 +307,73 @@ background: rgba(5, 25, 70, 0.65);
 }
 
 /* ── TRUST STATS ── */
+.trust-stats-wrap {
+  position: relative;
+  z-index: 10;
+  padding: 0 2rem;
+  margin-top: -4rem;   /* pulls banner up into hero */
+  margin-bottom: -4rem; /* pushes it down into about section */
+}
 .trust-stats {
   background: var(--navy);
   color: #fff;
-  padding: 4rem 2rem;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-shadow:
+    0 24px 64px -12px color-mix(in oklab, var(--navy) 55%, transparent),
+    0 6px 20px -4px rgba(0,0,0,.25);
 }
 .trust-stats-inner {
-  max-width: 1280px;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 0;
   text-align: center;
 }
-.stat-item {}
+.stat-item {
+  padding: .75rem 1rem;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.stat-item:last-child { border-right: none; }
 .stat-number {
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--gold);
   line-height: 1;
 }
 .stat-label {
-  font-size: .875rem;
-  color: rgba(255,255,255,.65);
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
   margin-top: .4rem;
   font-weight: 400;
+  letter-spacing: .02em;
+}
+@media (max-width: 640px) {
+  .trust-stats-wrap {
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+    padding: 0 1rem;
+  }
+  .trust-stats {
+    padding: 1.75rem 1.25rem;
+    border-radius: 16px;
+  }
+  .trust-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    padding: 1rem .75rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.1); }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-bottom: none; }
 }
 
 /* ── SECTION COMMON ── */
@@ -406,7 +448,7 @@ section { padding: 5rem 2rem; }
 .service-link:hover { gap: .6rem; }
 
 /* ── ABOUT ── */
-.about-section { background: var(--muted); }
+.about-section { background: var(--muted); padding-top: 9rem; }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -726,7 +768,7 @@ footer {
 .mobile-nav {
   display: flex;
   position: fixed;
-  top: 100px; /* sits just below the floating nav bar */
+  top: 0; /* set dynamically via JS */
   left: 16px;
   right: 16px;
   max-width: 420px;
@@ -805,6 +847,43 @@ footer {
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 .hamburger span { transition: transform .3s ease, opacity .3s ease; }
+
+/* ── STICKY WHATSAPP BUTTON ── */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: .875rem;
+  font-weight: 600;
+  padding: .7rem 1.2rem .7rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(37,211,102,.4), 0 2px 8px rgba(0,0,0,.12);
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease;
+  white-space: nowrap;
+}
+.wa-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(37,211,102,.5), 0 4px 12px rgba(0,0,0,.15);
+}
+.wa-float svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: #fff;
+}
+@media (max-width: 480px) {
+  .wa-float span { display: none; }
+  .wa-float { padding: .85rem; border-radius: 50%; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
 
 /* ── REVIEWS (Google style) ── */
 .reviews-section { background: #f8f9fa; padding: 5rem 2rem; }
@@ -1076,7 +1155,7 @@ footer {
   <div class="mobile-nav-divider"></div>
   <a href="https://wa.me/" class="btn btn-wa" onclick="closeMobileNav()">💬 WhatsApp Us</a>
   <div style="height:.5rem"></div>
-  <a href="tel:03313000000" class="btn btn-primary" onclick="closeMobileNav()" style="display:flex;align-items:center;justify-content:center;gap:.5rem"><i class="fa fa-phone" style="font-size:14px;color:var(--gold)"></i> <span style="color:var(--gold)">0331 3000000</span></a>
+  <a href="tel:03313000000" class="btn btn-primary" onclick="closeMobileNav()" style="display:flex;align-items:center;justify-content:center;gap:.5rem"><i class="fa fa-phone" style="font-size:14px;color:var(--bg)"></i> <span style="color:var(--bg)">0331 3000000</span></a>
 </div>
 
 <!-- HERO -->
@@ -1101,6 +1180,7 @@ footer {
 </section>
 
 <!-- TRUST STATS -->
+<div class="trust-stats-wrap">
 <div class="trust-stats">
   <div class="trust-stats-inner">
     <div class="stat-item">
@@ -1120,6 +1200,7 @@ footer {
       <div class="stat-label">Emergency Support</div>
     </div>
   </div>
+</div>
 </div>
 <!-- ABOUT -->
 <section class="about-section" id="about">
@@ -1769,8 +1850,23 @@ footer {
   </div>
 </footer>
 
+<!-- STICKY WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Chat on WhatsApp</span>
+</a>
+
 <script>
+function positionMobileNav() {
+  const navWrapper = document.querySelector('.nav-wrapper');
+  const mobileNav = document.getElementById('mobileNav');
+  if (!navWrapper || !mobileNav) return;
+  const rect = navWrapper.getBoundingClientRect();
+  mobileNav.style.top = (rect.bottom + 8) + 'px';
+}
+
 function toggleMobileNav() {
+  positionMobileNav();
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('hamburgerBtn');
   const backdrop = document.getElementById('mobileNavBackdrop');
@@ -1823,6 +1919,14 @@ function handleBooking() {
   const msg = `Hi! I'd like to book an appointment.\n\nName: ${name || '—'}\nPet: ${petType || '—'}\nService: ${service || '—'}\nDate: ${date || '—'}`;
   window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
+
+// Reposition mobile nav on scroll (in case nav-wrapper shifts)
+window.addEventListener('scroll', function() {
+  const nav = document.getElementById('mobileNav');
+  if (nav && nav.classList.contains('open')) {
+    positionMobileNav();
+  }
+}, { passive: true });
 
 // Intersection observer for scroll reveal
 const observer = new IntersectionObserver(entries => {
