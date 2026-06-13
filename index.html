@@ -221,7 +221,8 @@ button { cursor: pointer; font-family: inherit; }
   overflow: hidden;
   padding-bottom: 5rem; /* space for the overlapping stats banner */
   /* background: url("images/hero-bg.webp") center/cover no-repeat; */
-  background: url("images/hero-bg2.webp") center/cover no-repeat;
+  /* background: url("images/hero-bg2.webp") center/cover no-repeat; */
+  background: url("images/hero-bg3.jpg") center/cover no-repeat;
 }
 
 .hero::before {
@@ -1129,10 +1130,10 @@ footer {
       <li><a href="#" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#store" style="white-space: nowrap;">Pet Store</a></li>      <li><a href="#boarding">Boarding</a></li>
       <li><a href="#grooming">Grooming</a></li>
+      <li><a href="#boarding" onclick="closeMobileNav()">Boarding</a></li>
+      <li><a href="#pet-store" style="white-space: nowrap;">Pet Store</a></li>      <li><a href="#boarding">Boarding</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <!-- <li><a href="#blog">Blog</a></li> -->
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1158,10 +1159,11 @@ footer {
   <a href="#" onclick="closeMobileNav()">Home</a>
   <a href="#about" onclick="closeMobileNav()">About</a>
   <a href="#services" onclick="closeMobileNav()">Services</a>
-  <a href="#store" onclick="closeMobileNav()">Pet Store</a>
-  <a href="#boarding" onclick="closeMobileNav()">Boarding</a>
   <a href="#grooming" onclick="closeMobileNav()">Grooming</a>
+  <a href="#boarding" onclick="closeMobileNav()">Boarding</a>
+  <a href="#pet-store" onclick="closeMobileNav()">Pet Store</a>
   <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+  <a href="#reviews" onclick="closeMobileNav()">Reviews</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
   <div class="mobile-nav-divider"></div>
   <a href="https://wa.me/" class="btn btn-wa" onclick="closeMobileNav()">💬 WhatsApp Us</a>
@@ -1364,7 +1366,7 @@ footer {
 </section>
 
 <!-- PET STORE -->
-<section class="store-section fade-section">
+<section id="pet-store" class="store-section fade-section">
   <div class="section-flex">
     <div style="max-width:768px;text-align:center;margin:0 auto;">
       <div class="section-tag amber"><span class="dot"></span>Pet Store</div>
@@ -1427,7 +1429,7 @@ footer {
   </div>
 </section>
 <!-- GALLERY -->
-<section class="image-gallery fade-section">
+<section id="gallery" class="image-gallery fade-section">
     <div class="section-heading">
       <div class="section-eyebrow">Our Gallery</div>
       <h2>A glimpse inside our clinic.</h2>
