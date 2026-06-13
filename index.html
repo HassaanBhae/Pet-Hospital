@@ -848,6 +848,17 @@ footer {
 .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 .hamburger span { transition: transform .3s ease, opacity .3s ease; }
 
+/* ── SCROLL FADE ── */
+.fade-section {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── STICKY WHATSAPP BUTTON ── */
 .wa-float {
   position: fixed;
@@ -1180,7 +1191,7 @@ footer {
 </section>
 
 <!-- TRUST STATS -->
-<div class="trust-stats-wrap">
+<div class="trust-stats-wrap fade-section">
 <div class="trust-stats">
   <div class="trust-stats-inner">
     <div class="stat-item">
@@ -1203,7 +1214,7 @@ footer {
 </div>
 </div>
 <!-- ABOUT -->
-<section class="about-section" id="about">
+<section class="about-section fade-section" id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-image"><img src="./images/about.webp"></div>
@@ -1226,7 +1237,7 @@ footer {
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="fade-section">
   <div class="section-inner">
     <div class="section-heading">
       <div class="section-eyebrow">What We Offer</div>
@@ -1276,7 +1287,7 @@ footer {
 
 
 <!-- GROOMING -->
-<section id="grooming">
+<section id="grooming" class="fade-section">
   <div class="section-inner">
     <div class="section-heading">
       <div class="section-eyebrow ">Professional Grooming</div>
@@ -1320,7 +1331,7 @@ footer {
 </section>
 
 <!-- BOARDING -->
-<section style="background:var(--muted)" id="boarding">
+<section style="background:var(--muted)" id="boarding" class="fade-section">
   <div class="section-inner">
     <div class="section-heading">
       <div class="section-eyebrow">Pet Boarding</div>
@@ -1353,7 +1364,7 @@ footer {
 </section>
 
 <!-- PET STORE -->
-<section class="store-section">
+<section class="store-section fade-section">
   <div class="section-flex">
     <div style="max-width:768px;text-align:center;margin:0 auto;">
       <div class="section-tag amber"><span class="dot"></span>Pet Store</div>
@@ -1416,7 +1427,7 @@ footer {
   </div>
 </section>
 <!-- GALLERY -->
-<section class="image-gallery">
+<section class="image-gallery fade-section">
     <div class="section-heading">
       <div class="section-eyebrow">Our Gallery</div>
       <h2>A glimpse inside our clinic.</h2>
@@ -1436,7 +1447,7 @@ footer {
 
 
 <!-- REVIEWS -->
-<section class="reviews-section" id="reviews">
+<section class="reviews-section fade-section" id="reviews">
   <div class="section-inner">
     <div class="section-heading">
       <div class="section-eyebrow">Google Reviews</div>
@@ -1774,7 +1785,7 @@ footer {
 </section>
 
 <!-- CONTACT + BOOKING -->
-<section class="contact-strip" id="contact">
+<section class="contact-strip fade-section" id="contact">
   <div class="contact-strip-inner">
     <div>
       <div style="font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem">Get in Touch</div>
@@ -1928,8 +1939,20 @@ window.addEventListener('scroll', function() {
   }
 }, { passive: true });
 
-// Intersection observer for scroll reveal
-const observer = new IntersectionObserver(entries => {
+// ── SCROLL FADE FOR ALL SECTIONS ──
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      sectionObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-section').forEach(el => sectionObserver.observe(el));
+
+// ── CARD SCROLL REVEAL ──
+const cardObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.style.opacity = '1';
@@ -1942,7 +1965,7 @@ document.querySelectorAll('.service-card, .store-card, .highlight-card').forEach
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity .5s ease, transform .5s ease, box-shadow .25s, border-color .25s';
-  observer.observe(el);
+  cardObserver.observe(el);
 });
 // ── TRUST STATS COUNTER ANIMATION ──
 (function() {
