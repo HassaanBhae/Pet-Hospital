@@ -25,8 +25,8 @@
   --shadow-soft: 0 10px 40px -15px color-mix(in oklab, var(--navy) 18%, transparent);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); color: var(--fg); background: var(--bg); line-height: 1.6; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body { font-family: var(--font-sans); color: var(--fg); background: var(--bg); line-height: 1.6; overflow-x: clip; max-width: 100%; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; }
@@ -51,6 +51,8 @@ button { cursor: pointer; font-family: inherit; }
   top: 12px;
   z-index: 1000;
   padding: 0 16px;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* ── NAV ───────────────────────────────────────── */
@@ -72,6 +74,7 @@ button { cursor: pointer; font-family: inherit; }
     0 2px 10px rgba(0,0,0,.04); */
 
   padding: 0 2rem;
+  width: 100%;
 }
 
 .nav-inner{
@@ -314,6 +317,9 @@ background: rgba(5, 25, 70, 0.65);
   padding: 0 2rem;
   margin-top: -4rem;   /* pulls banner up into hero */
   margin-bottom: -4rem; /* pushes it down into about section */
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 .trust-stats {
   background: var(--navy);
@@ -378,8 +384,8 @@ background: rgba(5, 25, 70, 0.65);
 }
 
 /* ── SECTION COMMON ── */
-section { padding: 5rem 2rem; }
-.section-inner { max-width: 1280px; margin: auto; }
+section { padding: 5rem 2rem; width: 100%; max-width: 100vw; overflow-x: hidden; }
+.section-inner { max-width: 1280px; margin: auto; width: 100%; }
 .section-heading { text-align: center; margin-bottom: 3.5rem; }
 .section-eyebrow {
   font-size: 2rem;
@@ -717,10 +723,12 @@ footer {
   color: rgba(255,255,255,.7);
   padding: 4rem 2rem 2rem;
   width: 100%;
+  overflow-x: hidden;
 }
 .footer-inner {
   max-width: 100%;
   margin: auto;
+  overflow-x: hidden;
 }
 .footer-grid {
   display: flex;
@@ -895,10 +903,24 @@ footer {
   .wa-float span { display: none; }
   .wa-float { padding: .85rem; border-radius: 50%; }
   .wa-float svg { width: 26px; height: 26px; }
+  /* Extra narrow screen fixes */
+  section { padding: 3.5rem 1rem; }
+  .contact-strip { padding: 3.5rem 1rem; }
+  .store-section { padding: 3.5rem 1rem; }
+  .trust-stats-wrap { padding: 0 .75rem; margin-top: -3rem; margin-bottom: -3rem; }
+  .trust-stats { padding: 1.5rem 1rem; border-radius: 14px; }
+  .hero-inner { padding: 2.5rem 1rem; }
+  .nav-wrapper { padding: 0 10px; }
+  .nav { padding: 0 .75rem; max-width: 100%; border-radius: 16px; }
+  .booking-form { padding: 1.25rem 1rem; }
+  .store-grid { gap: 12px; }
+  .highlight-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .g-summary { gap: 1rem; padding: 1.25rem 1rem; }
+  .g-divider-v { display: none; }
 }
 
 /* ── REVIEWS (Google style) ── */
-.reviews-section { background: #f8f9fa; padding: 5rem 2rem; }
+.reviews-section { background: #f8f9fa; padding: 5rem 2rem; width: 100%; overflow-x: hidden; }
 .g-panel {
   background: #fff;
   border-radius: 12px;
@@ -1058,6 +1080,19 @@ footer {
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
   .form-row { grid-template-columns: 1fr; }
+  /* Reduce horizontal padding on sections */
+  section { padding: 4rem 1.25rem; }
+  .contact-strip { padding: 4rem 1.25rem; }
+  .store-section { padding: 4rem 1.25rem; }
+  .trust-stats-wrap { padding: 0 1rem; }
+  .trust-stats { padding: 2rem 1.25rem; }
+  /* Prevent wide elements from overflowing */
+  .about-grid,
+  .highlight-grid,
+  .contact-strip-inner,
+  .gallery-grid,
+  .footer-grid,
+  .store-grid { width: 100%; }
 }
 @media (min-width: 769px) {
   .hamburger { display: none !important; }
@@ -1457,7 +1492,7 @@ footer {
       <p>Real experiences from real clients — trusted by families across Karachi.</p>
     </div>
 
-    <div class="g-panel" style="max-width:680px;margin:0 auto">
+    <div class="g-panel" style="max-width:680px;margin:0 auto;width:100%">
 
       <!-- Google summary bar -->
       <div class="g-summary">
@@ -1844,17 +1879,6 @@ footer {
           <li><a href="#services">Home Visits</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#store">Pet Store</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <!-- <li><a href="#blog">Blog</a></li> -->
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#book">Book Appointment</a></li>
-        </ul>
-      </div>
     </div>
     <div class="footer-bottom">
       <span>©2026 Wildlife & Pet Care Center. All rights reserved.</span>
@@ -1864,10 +1888,10 @@ footer {
 </footer>
 
 <!-- STICKY WHATSAPP FLOAT BUTTON -->
-<a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<!-- <a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   <span>Chat on WhatsApp</span>
-</a>
+</a> -->
 
 <script>
 function positionMobileNav() {
@@ -1886,7 +1910,7 @@ function toggleMobileNav() {
   const isOpen = nav.classList.toggle('open');
   btn.classList.toggle('active', isOpen);
   backdrop.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  // document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 function closeMobileNav() {
   const nav = document.getElementById('mobileNav');
