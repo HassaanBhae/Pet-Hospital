@@ -32,7 +32,7 @@ a { color: inherit; text-decoration: none; }
 button { cursor: pointer; font-family: inherit; }
 
 /* ── EMERGENCY BANNER ── */
-.emergency-banner {
+/* .emergency-banner {
   background: var(--navy);
   color: #fff;
   text-align: center;
@@ -41,14 +41,14 @@ button { cursor: pointer; font-family: inherit; }
   font-weight: 500;
   letter-spacing: .02em;
 }
-.emergency-banner a { color: var(--gold); }
+.emergency-banner a { color: var(--gold); } */
 
 /* ── FLOATING STICKY NAV ───────────────────────────── */
 /* ── FLOATING NAV WRAPPER ───────────────────────── */
 
 .nav-wrapper{
   position: sticky;
-  top: 12px;
+  top: 0px;
   z-index: 1000;
   padding: 0 16px;
   width: 100%;
@@ -58,7 +58,7 @@ button { cursor: pointer; font-family: inherit; }
 /* ── NAV ───────────────────────────────────────── */
 
 .nav{
-  max-width: 90%;
+  /* max-width: 90%; */
   margin: 0 auto;
 
   background: var(--bg);
@@ -73,13 +73,13 @@ button { cursor: pointer; font-family: inherit; }
     0 10px 30px rgba(0,0,0,.08),
     0 2px 10px rgba(0,0,0,.04); */
 
-  padding: 0 2rem;
+  padding: 0 1rem;
   width: 100%;
 }
 
 .nav-inner{
   height: 72px;
-  max-width: 1280px;
+  /* max-width: 1280px; */
 
   display: flex;
   align-items: center;
@@ -1149,10 +1149,10 @@ footer {
 </head>
 <body>
 
-<!-- EMERGENCY BANNER -->
+<!-- EMERGENCY BANNER
 <div class="emergency-banner">
   🚨 24/7 Emergency Line — <a href="tel:+123456789">Call Now</a> &nbsp;|&nbsp; Mon – Sun · 9:00 AM – 11:00 PM
-</div>
+</div> -->
 
 <!-- NAV -->
  <div class="nav-wrapper">
@@ -1162,8 +1162,8 @@ footer {
     <a href="#" class="nav-logo">
       <img src="./images/wildlife-pet-logo.png"/>
       <div>
-        <div style="line-height:1.1">Wildlife & Pet</div>
-        <div style="font-size:.75rem;font-weight:400;color:var(--muted-fg);font-family:var(--font-sans)">Care Center</div>
+        <div style="line-height:1.1">Wildlife & Pet Care Center</div>
+        <div style="font-size:.75rem;font-weight:400;color:var(--muted-fg);font-family:var(--font-sans)">Veterinary Hospital</div>
       </div>
     </a>
     <ul class="nav-links">
@@ -1172,7 +1172,7 @@ footer {
       <li><a href="#services">Services</a></li>
       <li><a href="#grooming">Grooming</a></li>
       <li><a href="#boarding" onclick="closeMobileNav()">Boarding</a></li>
-      <li><a href="#pet-store" style="white-space: nowrap;">Pet Store</a></li>      <li><a href="#boarding">Boarding</a></li>
+      <li><a href="#pet-store" style="white-space: nowrap;">Pet Store</a></li>      
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1182,7 +1182,7 @@ footer {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.12 1.523 5.854L0 24l6.335-1.5A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.79 9.79 0 01-5.032-1.387l-.36-.214-3.738.884.934-3.644-.235-.374A9.786 9.786 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
         WhatsApp
       </a>
-      <a href="tel:03313000000" class="btn btn-primary"><i class="fa fa-phone" style="font-size:14px"></i> 0331 3000000</a>
+      <a href="tel:02134013150" class="btn btn-primary"><i class="fa fa-phone" style="font-size:14px"></i>021-34013150</a>
     </div>
     <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -1507,7 +1507,7 @@ footer {
           </div>
           <div class="g-summary-score-bars">
             <div>
-              <div class="g-score-big">5.0</div>
+              <div class="g-score-big">4.9</div>
               <div class="g-stars-row">
                 <svg class="g-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 <svg class="g-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1515,15 +1515,15 @@ footer {
                 <svg class="g-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 <svg class="g-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               </div>
-              <div class="g-review-count">9 reviews</div>
+              <div class="g-review-count">150 reviews</div>
             </div>
             <div class="g-divider-v"></div>
             <div class="g-bars">
-              <div class="g-bar-row"><span class="g-bar-label">5</span><div class="g-bar-track"><div class="g-bar-fill" style="width:100%"></div></div></div>
-              <div class="g-bar-row"><span class="g-bar-label">4</span><div class="g-bar-track"><div class="g-bar-fill" style="width:0%"></div></div></div>
-              <div class="g-bar-row"><span class="g-bar-label">3</span><div class="g-bar-track"><div class="g-bar-fill" style="width:0%"></div></div></div>
-              <div class="g-bar-row"><span class="g-bar-label">2</span><div class="g-bar-track"><div class="g-bar-fill" style="width:0%"></div></div></div>
-              <div class="g-bar-row"><span class="g-bar-label">1</span><div class="g-bar-track"><div class="g-bar-fill" style="width:0%"></div></div></div>
+              <div class="g-bar-row"><span class="g-bar-label">5</span><div class="g-bar-track"><div class="g-bar-fill" style="width:98%"></div></div></div>
+              <div class="g-bar-row"><span class="g-bar-label">4</span><div class="g-bar-track"><div class="g-bar-fill" style="width:8%"></div></div></div>
+              <div class="g-bar-row"><span class="g-bar-label">3</span><div class="g-bar-track"><div class="g-bar-fill" style="width:4%"></div></div></div>
+              <div class="g-bar-row"><span class="g-bar-label">2</span><div class="g-bar-track"><div class="g-bar-fill" style="width:3%"></div></div></div>
+              <div class="g-bar-row"><span class="g-bar-label">1</span><div class="g-bar-track"><div class="g-bar-fill" style="width:5%"></div></div></div>
             </div>
           </div>
         </div>
@@ -1836,11 +1836,12 @@ footer {
       <ul class="contact-info-list">
         <li>
           <div class="icon">📍</div>
-          <div><strong>Address</strong>123 Care Avenue, Your City, Country</div>
+          <div><strong>Address</strong>Shop no.14, Gohar Pride Apartment, Block 14, backside of KFC, Gulistan e Johar, Karachi</div>
         </li>
         <li>
           <div class="icon">📞</div>
-          <div><strong>Phone</strong><a href="tel:+123456789" style="color:rgba(255,255,255,.85)">+1 234 567 89</a></div>
+          <div><strong>Landline</strong><a href="tel:+123456789" style="color:rgba(255,255,255,.85)">021-34013150</a></div>
+          <div><strong>Mobile</strong><a href="tel:+03303478373" style="color:rgba(255,255,255,.85)">03303478373</a></div>
         </li>
         <li>
           <div class="icon">🕐</div>
