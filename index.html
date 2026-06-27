@@ -1633,48 +1633,196 @@
         }
 
         /* ── WA FLOAT ── */
-        .wa-float {
+        /* ── SOCIAL FLOAT STACK ── */
+        .social-float-stack {
             position: fixed;
             bottom: 24px;
             right: 24px;
             z-index: 9999;
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .wa-float,
+        .fb-float,
+        .ig-float {
+            display: flex;
             align-items: center;
             gap: .55rem;
-            background: #25d366;
             color: #fff;
             font-family: var(--font-sans);
             font-size: .875rem;
             font-weight: 600;
-            padding: .7rem 1.2rem .7rem 1rem;
+            /* padding: .7rem 1.2rem .7rem 1rem; */
+            padding: .85rem;
+
             border-radius: 999px;
-            box-shadow: 0 6px 24px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .12);
             text-decoration: none;
             transition: transform .22s ease, box-shadow .22s ease;
             white-space: nowrap;
+        }
+        .wa-float {
+            background: #25d366;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, .4), 0 2px 8px rgba(0, 0, 0, .12);
         }
         .wa-float:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 32px rgba(37, 211, 102, .5), 0 4px 12px rgba(0, 0, 0, .15);
         }
-        .wa-float svg {
+        .fb-float {
+            background: #1877f2;
+            box-shadow: 0 6px 24px rgba(24, 119, 242, .4), 0 2px 8px rgba(0, 0, 0, .12);
+        }
+        .fb-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(24, 119, 242, .5), 0 4px 12px rgba(0, 0, 0, .15);
+        }
+        .ig-float {
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 6px 24px rgba(220, 39, 67, .4), 0 2px 8px rgba(0, 0, 0, .12);
+        }
+        .ig-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(220, 39, 67, .5), 0 4px 12px rgba(0, 0, 0, .15);
+        }
+        .wa-float svg,
+        .fb-float svg,
+        .ig-float svg {
             width: 22px;
             height: 22px;
             flex-shrink: 0;
             fill: #fff;
         }
         @media (max-width: 480px) {
-            .wa-float span {
+            .wa-float span,
+            .fb-float span,
+            .ig-float span {
                 display: none;
             }
-            .wa-float {
+            .wa-float,
+            .fb-float,
+            .ig-float {
                 padding: .85rem;
                 border-radius: 50%;
             }
-            .wa-float svg {
+            .wa-float svg,
+            .fb-float svg,
+            .ig-float svg {
                 width: 26px;
                 height: 26px;
             }
+        }
+        /* ── PRODUCT MODAL ── */
+        .product-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(4px);
+        }
+        .product-modal-backdrop.open {
+            display: flex;
+        }
+        .product-modal {
+            background: #fff;
+            border-radius: 1.25rem;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 24px 64px rgba(0,0,0,.18);
+            overflow: hidden;
+            animation: modalPop .22s ease;
+        }
+        @keyframes modalPop {
+            from { opacity:0; transform: scale(.93) translateY(12px); }
+            to   { opacity:1; transform: scale(1)  translateY(0); }
+        }
+        .product-modal-img {
+            background: var(--muted);
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+        }
+        .product-modal-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+        .product-modal-tag {
+            display: inline-block;
+            background: oklch(95% .03 80);
+            color: var(--primary);
+            font-size: .72rem;
+            font-weight: 600;
+            padding: .2rem .6rem;
+            border-radius: 999px;
+            margin-bottom: .6rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .product-modal-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: .35rem;
+            line-height: 1.3;
+        }
+        .product-modal-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: .75rem;
+        }
+        .product-modal-desc {
+            font-size: .875rem;
+            color: var(--muted-fg);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+        .product-modal-actions {
+            display: flex;
+            gap: .75rem;
+        }
+        .product-modal-wa {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            background: #25d366;
+            color: #fff;
+            font-weight: 600;
+            font-size: .9rem;
+            padding: .75rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 16px rgba(37,211,102,.35);
+        }
+        .product-modal-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37,211,102,.45);
+        }
+        .product-modal-close {
+            background: var(--muted);
+            border: none;
+            border-radius: 999px;
+            padding: .75rem 1.1rem;
+            font-size: .875rem;
+            font-weight: 600;
+            color: var(--muted-fg);
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .product-modal-close:hover { background: var(--border); }
+        @media (max-width: 480px) {
+            .product-modal { border-radius: 1rem; }
+            .product-modal-actions { flex-direction: column; }
         }
     </style>
 </head>
@@ -1826,18 +1974,6 @@
                         <div class="service-icon">💉</div>
                         <h3>Vaccination</h3>
                         <p>Complete vaccination schedules for dogs, cats, birds and exotic pets. Passports & travel documents issued.</p>
-                        <span class="service-link">Learn more →</span>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">📡</div>
-                        <h3>X-Ray & Ultrasound</h3>
-                        <p>State-of-the-art diagnostic imaging to accurately assess your pet's internal health.</p>
-                        <span class="service-link">Learn more →</span>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🧪</div>
-                        <h3>Laboratory</h3>
-                        <p>In-house lab for blood panels, urinalysis, cultures and rapid pathology results.</p>
                         <span class="service-link">Learn more →</span>
                     </div>
                     <div class="service-card">
@@ -2220,16 +2356,6 @@
                         <p>Complete vaccination schedules for dogs, cats, birds and exotic pets. Passports & travel documents issued.</p>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon">📡</div>
-                        <h3>X-Ray & Ultrasound</h3>
-                        <p>State-of-the-art diagnostic imaging to accurately assess your pet's internal health.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🧪</div>
-                        <h3>Laboratory</h3>
-                        <p>In-house lab for blood panels, urinalysis, cultures and rapid pathology results.</p>
-                    </div>
-                    <div class="service-card">
                         <div class="service-icon">🏠</div>
                         <h3>Home Visits</h3>
                         <p>Veterinary care delivered to your door for pets who are anxious, elderly or recovering.</p>
@@ -2491,11 +2617,44 @@
         </div>
     </footer>
 
-    <!-- ─── WHATSAPP FLOAT ─── -->
-    <a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span>Chat on WhatsApp</span>
-    </a>
+    <!-- ─── SOCIAL FLOAT STACK ─── -->
+    <div class="social-float-stack">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/the.pet.hospital/" class="ig-float" target="_blank" rel="noopener" aria-label="Follow on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <!-- <span>Instagram</span> -->
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/p/Wildlife-Pet-Care-Center-100089990267251/" class="fb-float" target="_blank" rel="noopener" aria-label="Visit on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            <!-- <span>Facebook</span> -->
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>Chat on WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- ─── PRODUCT MODAL ─── -->
+    <div class="product-modal-backdrop" id="productModal" onclick="closeProductModal(event)">
+        <div class="product-modal">
+            <div class="product-modal-img" id="pmEmoji"></div>
+            <div class="product-modal-body">
+                <span class="product-modal-tag" id="pmTag"></span>
+                <div class="product-modal-name" id="pmName"></div>
+                <div class="product-modal-price" id="pmPrice"></div>
+                <div class="product-modal-desc" id="pmDesc"></div>
+                <div class="product-modal-actions">
+                    <a class="product-modal-wa" id="pmWa" href="#" target="_blank" rel="noopener">
+                        <svg width="18" height="18" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Message us to Buy
+                    </a>
+                    <button class="product-modal-close" onclick="closeProductModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ─── LIGHTBOX ─── -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -2509,187 +2668,83 @@
     <script>
         // ─── PRODUCT DATA ──────────────────────────────────────────────
         const products = [{
-            id: 1,
-            name: 'Chicken & Rice Wet Food',
-            category: 'wet',
-            emoji: '🥫',
-            price: 'Rs. 450',
-            tag: 'Grain-Free'
+            id: 1, name: 'Chicken & Rice Wet Food', category: 'wet', emoji: '🥫', price: 'Rs. 450', tag: 'Grain-Free',
+            desc: 'A grain-free wet food made with real chicken and wholesome rice. Packed with protein and moisture to support hydration, digestion, and a healthy coat. Ideal for adult cats and dogs.'
         }, {
-            id: 2,
-            name: 'Beef & Vegetable Wet Food',
-            category: 'wet',
-            emoji: '🥩',
-            price: 'Rs. 520',
-            tag: 'High Protein'
+            id: 2, name: 'Beef & Vegetable Wet Food', category: 'wet', emoji: '🥩', price: 'Rs. 520', tag: 'High Protein',
+            desc: 'Rich in high-quality beef protein blended with garden vegetables. Supports lean muscle development and provides essential vitamins and minerals for an active, healthy pet.'
         }, {
-            id: 3,
-            name: 'Fish & Salmon Wet Food',
-            category: 'wet',
-            emoji: '🐟',
-            price: 'Rs. 580',
-            tag: 'Omega-3'
+            id: 3, name: 'Fish & Salmon Wet Food', category: 'wet', emoji: '🐟', price: 'Rs. 580', tag: 'Omega-3',
+            desc: 'Made with fresh salmon and white fish, loaded with Omega-3 fatty acids. Promotes a shiny coat, healthy joints, and sharp vision. Great for pets with skin sensitivities.'
         }, {
-            id: 4,
-            name: 'Lamb & Sweet Potato Wet',
-            category: 'wet',
-            emoji: '🍠',
-            price: 'Rs. 610',
-            tag: 'Sensitive'
+            id: 4, name: 'Lamb & Sweet Potato Wet', category: 'wet', emoji: '🍠', price: 'Rs. 610', tag: 'Sensitive',
+            desc: 'A gentle, easily digestible formula using lamb and sweet potato. Perfect for pets with sensitive stomachs or food allergies. Free from common irritants and artificial additives.'
         }, {
-            id: 5,
-            name: 'Turkey & Cranberry Wet',
-            category: 'wet',
-            emoji: '🦃',
-            price: 'Rs. 490',
-            tag: 'Urinary Health'
+            id: 5, name: 'Turkey & Cranberry Wet', category: 'wet', emoji: '🦃', price: 'Rs. 490', tag: 'Urinary Health',
+            desc: 'Turkey and cranberry work together to support urinary tract health. Formulated to maintain a healthy pH balance and reduce the risk of urinary crystals. Vet-recommended.'
         }, {
-            id: 6,
-            name: 'Premium Chicken Dry Food',
-            category: 'dry',
-            emoji: '🐔',
-            price: 'Rs. 1,200',
-            tag: '5kg Bag'
+            id: 6, name: 'Premium Chicken Dry Food', category: 'dry', emoji: '🐔', price: 'Rs. 1,200', tag: '5kg Bag',
+            desc: 'A balanced dry kibble with real chicken as the #1 ingredient. Supports overall health, dental hygiene through its crunchy texture, and provides sustained energy throughout the day. Comes in a 5kg bag.'
         }, {
-            id: 7,
-            name: 'Grain-Free Salmon Dry Food',
-            category: 'dry',
-            emoji: '🍣',
-            price: 'Rs. 1,450',
-            tag: 'Grain-Free'
+            id: 7, name: 'Grain-Free Salmon Dry Food', category: 'dry', emoji: '🍣', price: 'Rs. 1,450', tag: 'Grain-Free',
+            desc: 'A premium grain-free dry formula built on wild salmon. Rich in Omega-3 and Omega-6, ideal for pets with grain sensitivities. Supports healthy skin, coat, and lean muscle mass.'
         }, {
-            id: 8,
-            name: 'Lamb & Brown Rice Dry Food',
-            category: 'dry',
-            emoji: '🍚',
-            price: 'Rs. 1,350',
-            tag: 'Balanced'
+            id: 8, name: 'Lamb & Brown Rice Dry Food', category: 'dry', emoji: '🍚', price: 'Rs. 1,350', tag: 'Balanced',
+            desc: 'A well-balanced dry food combining lamb protein with wholesome brown rice. Provides a complete nutritional profile including fibre, antioxidants, and slow-release energy for all-day vitality.'
         }, {
-            id: 9,
-            name: 'Duck & Potato Dry Food',
-            category: 'dry',
-            emoji: '🦆',
-            price: 'Rs. 1,500',
-            tag: 'Hypoallergenic'
+            id: 9, name: 'Duck & Potato Dry Food', category: 'dry', emoji: '🦆', price: 'Rs. 1,500', tag: 'Hypoallergenic',
+            desc: 'A hypoallergenic formula using novel proteins (duck) and easily digestible potato. Recommended for pets with food intolerances or recurring skin and digestive issues.'
         }, {
-            id: 10,
-            name: 'Senior Care Dry Food',
-            category: 'dry',
-            emoji: '👴',
-            price: 'Rs. 1,280',
-            tag: 'Senior 7+'
+            id: 10, name: 'Senior Care Dry Food', category: 'dry', emoji: '👴', price: 'Rs. 1,280', tag: 'Senior 7+',
+            desc: 'Specially formulated for pets aged 7 and above. Contains joint-supporting glucosamine, reduced calories to manage weight, and added antioxidants to support immune function in older pets.'
         }, {
-            id: 11,
-            name: 'Indoor Cat Formula',
-            category: 'cat',
-            emoji: '🐈',
-            price: 'Rs. 980',
-            tag: 'Hairball Control'
+            id: 11, name: 'Indoor Cat Formula', category: 'cat', emoji: '🐈', price: 'Rs. 980', tag: 'Hairball Control',
+            desc: 'Designed for indoor cats with a more sedentary lifestyle. Features hairball-reducing fibre blend, controlled calorie levels, and added taurine for heart and eye health.'
         }, {
-            id: 12,
-            name: 'Kitten Growth Formula',
-            category: 'cat',
-            emoji: '🐱',
-            price: 'Rs. 1,050',
-            tag: 'Kitten 0-12mo'
+            id: 12, name: 'Kitten Growth Formula', category: 'cat', emoji: '🐱', price: 'Rs. 1,050', tag: 'Kitten 0-12mo',
+            desc: 'A nutrient-dense formula tailored for kittens up to 12 months. High in DHA for brain development, calcium for strong bones, and extra protein to fuel rapid growth.'
         }, {
-            id: 13,
-            name: 'Senior Cat Care',
-            category: 'cat',
-            emoji: '🧓',
-            price: 'Rs. 1,100',
-            tag: 'Senior 7+'
+            id: 13, name: 'Senior Cat Care', category: 'cat', emoji: '🧓', price: 'Rs. 1,100', tag: 'Senior 7+',
+            desc: 'Formulated for cats aged 7+, supporting kidney function, joint mobility, and immune health. Lower phosphorus levels protect ageing kidneys while antioxidants keep senior cats active.'
         }, {
-            id: 14,
-            name: 'Hairball Control Cat Food',
-            category: 'cat',
-            emoji: '🧶',
-            price: 'Rs. 920',
-            tag: 'Hairball'
+            id: 14, name: 'Hairball Control Cat Food', category: 'cat', emoji: '🧶', price: 'Rs. 920', tag: 'Hairball',
+            desc: 'A targeted formula to help cats pass hairballs naturally. Enriched with plant-based fibres and digestive enzymes, it reduces hairball formation and promotes a healthy gut.'
         }, {
-            id: 15,
-            name: 'Sensitive Stomach Cat Food',
-            category: 'cat',
-            emoji: '🤢',
-            price: 'Rs. 1,150',
-            tag: 'Sensitive'
+            id: 15, name: 'Sensitive Stomach Cat Food', category: 'cat', emoji: '🤢', price: 'Rs. 1,150', tag: 'Sensitive',
+            desc: 'Gentle on delicate digestive systems with highly digestible proteins and prebiotic fibres. Reduces vomiting and loose stools while delivering complete daily nutrition for adult cats.'
         }, {
-            id: 16,
-            name: 'Large Breed Dog Food',
-            category: 'dog',
-            emoji: '🐕',
-            price: 'Rs. 1,400',
-            tag: 'Large Breed'
+            id: 16, name: 'Large Breed Dog Food', category: 'dog', emoji: '🐕', price: 'Rs. 1,400', tag: 'Large Breed',
+            desc: 'Crafted for large breeds with bigger caloric and joint needs. Contains glucosamine, chondroitin, and L-carnitine to maintain healthy joints and ideal body weight in bigger dogs.'
         }, {
-            id: 17,
-            name: 'Small Breed Dog Food',
-            category: 'dog',
-            emoji: '🐩',
-            price: 'Rs. 1,250',
-            tag: 'Small Breed'
+            id: 17, name: 'Small Breed Dog Food', category: 'dog', emoji: '🐩', price: 'Rs. 1,250', tag: 'Small Breed',
+            desc: 'Small kibble size perfect for tiny mouths. High energy density meets the fast metabolism of small breeds, with added nutrients for dental health, coat shine, and digestive comfort.'
         }, {
-            id: 18,
-            name: 'Puppy Growth Formula',
-            category: 'dog',
-            emoji: '🐶',
-            price: 'Rs. 1,300',
-            tag: 'Puppy 0-12mo'
+            id: 18, name: 'Puppy Growth Formula', category: 'dog', emoji: '🐶', price: 'Rs. 1,300', tag: 'Puppy 0-12mo',
+            desc: 'Everything a growing puppy needs in one bowl. Enriched with DHA, calcium, and immune-boosting antioxidants to support brain development, bone strength, and a healthy start to life.'
         }, {
-            id: 19,
-            name: 'Senior Dog Care',
-            category: 'dog',
-            emoji: '👴',
-            price: 'Rs. 1,350',
-            tag: 'Senior 7+'
+            id: 19, name: 'Senior Dog Care', category: 'dog', emoji: '👴', price: 'Rs. 1,350', tag: 'Senior 7+',
+            desc: 'Tailored for dogs aged 7 and older. Features joint-supportive nutrients, easily digestible proteins, and antioxidant-rich ingredients to keep senior dogs comfortable and mobile.'
         }, {
-            id: 20,
-            name: 'Active Dog Formula',
-            category: 'dog',
-            emoji: '🏃',
-            price: 'Rs. 1,450',
-            tag: 'High Energy'
+            id: 20, name: 'Active Dog Formula', category: 'dog', emoji: '🏃', price: 'Rs. 1,450', tag: 'High Energy',
+            desc: 'A high-performance formula for active and working dogs. Elevated protein and fat content fuels endurance and muscle recovery, keeping your energetic companion at peak performance.'
         }, {
-            id: 21,
-            name: 'Interactive Dog Toy',
-            category: 'other',
-            emoji: '🧸',
-            price: 'Rs. 850',
-            tag: 'Toys'
+            id: 21, name: 'Interactive Dog Toy', category: 'other', emoji: '🧸', price: 'Rs. 850', tag: 'Toys',
+            desc: 'A durable interactive toy that stimulates your dog mentally and physically. Helps reduce boredom, separation anxiety, and destructive behaviour. Safe, non-toxic materials for all dog sizes.'
         }, {
-            id: 22,
-            name: 'Orthopedic Pet Bed',
-            category: 'other',
-            emoji: '🛏️',
-            price: 'Rs. 3,200',
-            tag: 'Beds'
+            id: 22, name: 'Orthopedic Pet Bed', category: 'other', emoji: '🛏️', price: 'Rs. 3,200', tag: 'Beds',
+            desc: 'A memory foam orthopedic bed designed to relieve pressure on joints and muscles. Ideal for senior pets or those recovering from surgery. Removable, washable cover for easy cleaning.'
         }, {
-            id: 23,
-            name: 'Grooming Brush Set',
-            category: 'other',
-            emoji: '🪥',
-            price: 'Rs. 650',
-            tag: 'Grooming'
+            id: 23, name: 'Grooming Brush Set', category: 'other', emoji: '🪥', price: 'Rs. 650', tag: 'Grooming',
+            desc: 'A complete grooming kit including a slicker brush, detangling comb, and deshedding tool. Reduces shedding, prevents matting, and keeps your pet\'s coat healthy and gleaming.'
         }, {
-            id: 24,
-            name: 'Nylon Collar & Leash Set',
-            category: 'other',
-            emoji: '🦮',
-            price: 'Rs. 890',
-            tag: 'Accessories'
+            id: 24, name: 'Nylon Collar & Leash Set', category: 'other', emoji: '🦮', price: 'Rs. 890', tag: 'Accessories',
+            desc: 'A sturdy yet comfortable nylon collar and matching leash set. Adjustable fit for most dog sizes, with a quick-release buckle and reflective stitching for safe evening walks.'
         }, {
-            id: 25,
-            name: 'Stainless Steel Bowls (2pc)',
-            category: 'other',
-            emoji: '🍽️',
-            price: 'Rs. 720',
-            tag: 'Bowls'
+            id: 25, name: 'Stainless Steel Bowls (2pc)', category: 'other', emoji: '🍽️', price: 'Rs. 720', tag: 'Bowls',
+            desc: 'A set of two food-grade stainless steel bowls — one for food, one for water. Non-slip base prevents sliding, dishwasher safe, and resistant to bacteria build-up unlike plastic bowls.'
         }, {
-            id: 26,
-            name: 'Joint Supplement Chews',
-            category: 'other',
-            emoji: '💊',
-            price: 'Rs. 1,500',
-            tag: 'Supplements'
+            id: 26, name: 'Joint Supplement Chews', category: 'other', emoji: '💊', price: 'Rs. 1,500', tag: 'Supplements',
+            desc: 'Vet-formulated chewable supplements with glucosamine, chondroitin, and MSM. Supports joint flexibility, reduces stiffness, and aids mobility in dogs and cats of all ages.'
         }];
 
         // ─── GALLERY DATA ──────────────────────────────────────────────
@@ -2783,7 +2838,7 @@
             const container = document.getElementById('storeProducts');
             const filtered = category === 'all' ? products : products.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => `
-                    <div class="store-product">
+                    <div class="store-product" style="cursor:pointer" onclick="openProductModal(${p.id})">
                         <div class="store-product-img" style="font-size:3.5rem;background:var(--muted);display:flex;align-items:center;justify-content:center">${p.emoji}</div>
                         <div class="store-product-body">
                             <h4>${p.name}</h4>
@@ -2793,6 +2848,29 @@
                     </div>
                 `).join('');
         }
+
+        // ─── PRODUCT MODAL ─────────────────────────────────────────────
+        function openProductModal(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById('pmEmoji').textContent = p.emoji;
+            document.getElementById('pmTag').textContent = p.tag;
+            document.getElementById('pmName').textContent = p.name;
+            document.getElementById('pmPrice').textContent = p.price;
+            document.getElementById('pmDesc').textContent = p.desc;
+            const msg = encodeURIComponent(`Hi! I'm interested in buying *${p.name}* (${p.price}). Can you help me with this order?`);
+            document.getElementById('pmWa').href = `https://wa.me/923303478373?text=${msg}`;
+            document.getElementById('productModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal(e) {
+            if (e && e.target !== document.getElementById('productModal')) return;
+            document.getElementById('productModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('productModal').classList.remove('open'); document.body.style.overflow = ''; } });
 
         function switchStoreTab(category) {
             document.querySelectorAll('.store-tab').forEach(t => t.classList.toggle('active', t.dataset.category === category));
