@@ -1743,11 +1743,12 @@
         }
         .product-modal-img {
             background: var(--muted);
-            height: 130px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4.5rem;
+            overflow: hidden;
         }
         .product-modal-body {
             padding: 1.25rem 1.5rem 1.5rem;
@@ -2265,11 +2266,14 @@
 
             <div class="store-tabs" id="storeTabs">
                 <button class="store-tab active" data-category="all">All</button>
-                <button class="store-tab" data-category="wet">Wet Food</button>
-                <button class="store-tab" data-category="dry">Dry Food</button>
-                <button class="store-tab" data-category="cat">Cat Food</button>
+                <button class="store-tab" data-category="catwet">Cat Wet Food</button>
+                <button class="store-tab" data-category="catdry">Cat Dry Food</button>
                 <button class="store-tab" data-category="dog">Dog Food</button>
-                <button class="store-tab" data-category="other">Other Items</button>
+                <button class="store-tab" data-category="birds">Birds</button>
+                <button class="store-tab" data-category="beds">Beds</button>
+                <button class="store-tab" data-category="dogtoys">Dog Toys</button>
+                <button class="store-tab" data-category="cattoys">Cat Toys</button>
+                <button class="store-tab" data-category="accessories">Accessories</button>
             </div>
 
             <div class="store-products" id="storeProducts">
@@ -2668,83 +2672,200 @@
     <script>
         // ─── PRODUCT DATA ──────────────────────────────────────────────
         const products = [{
-            id: 1, name: 'Chicken & Rice Wet Food', category: 'wet', emoji: '🥫', price: 'Rs. 450', tag: 'Grain-Free',
-            desc: 'A grain-free wet food made with real chicken and wholesome rice. Packed with protein and moisture to support hydration, digestion, and a healthy coat. Ideal for adult cats and dogs.'
+            id: 1, name: 'Felix Original Mixed Selection in jelly', category: 'catwet', image: 'images/products/felixOriginalMixedSelectionInJelly.jpg', price: 'Rs. 320', tag: 'Wet Food',
+            desc: 'Wet Food — Felix Original Mixed Selection in jelly. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 2, name: 'Beef & Vegetable Wet Food', category: 'wet', emoji: '🥩', price: 'Rs. 520', tag: 'High Protein',
-            desc: 'Rich in high-quality beef protein blended with garden vegetables. Supports lean muscle development and provides essential vitamins and minerals for an active, healthy pet.'
+            id: 2, name: 'Felix Kitten Mix Selection jelly pouches', category: 'catwet', image: 'images/products/felixKittenMixSelectionJellyPouches.jpg', price: 'Rs. 320', tag: 'Wet Food',
+            desc: 'Wet Food — Felix Kitten Mix Selection jelly pouches. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 3, name: 'Fish & Salmon Wet Food', category: 'wet', emoji: '🐟', price: 'Rs. 580', tag: 'Omega-3',
-            desc: 'Made with fresh salmon and white fish, loaded with Omega-3 fatty acids. Promotes a shiny coat, healthy joints, and sharp vision. Great for pets with skin sensitivities.'
+            id: 3, name: 'Felix Fish Selection jelly pouches', category: 'catwet', image: 'images/products/felixFishSelectionJellyPouches.jpg', price: 'Rs. 320', tag: 'Wet Food',
+            desc: 'Wet Food — Felix Fish Selection jelly pouches. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 4, name: 'Lamb & Sweet Potato Wet', category: 'wet', emoji: '🍠', price: 'Rs. 610', tag: 'Sensitive',
-            desc: 'A gentle, easily digestible formula using lamb and sweet potato. Perfect for pets with sensitive stomachs or food allergies. Free from common irritants and artificial additives.'
+            id: 4, name: 'Felicia Sterilised Chicken Jelly 85gm', category: 'catwet', image: 'images/products/feliciaSterilisedChickenJelly85Gm.jpg', price: 'Rs. 350', tag: 'Wet Food',
+            desc: 'Wet Food — Felicia Sterilised Chicken Jelly 85gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 5, name: 'Turkey & Cranberry Wet', category: 'wet', emoji: '🦃', price: 'Rs. 490', tag: 'Urinary Health',
-            desc: 'Turkey and cranberry work together to support urinary tract health. Formulated to maintain a healthy pH balance and reduce the risk of urinary crystals. Vet-recommended.'
+            id: 5, name: 'Felicia Kitten Lamb Jelly 85gm', category: 'catwet', image: 'images/products/feliciaKittenLambJelly85Gm.jpg', price: 'Rs. 350', tag: 'Wet Food',
+            desc: 'Wet Food — Felicia Kitten Lamb Jelly 85gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 6, name: 'Premium Chicken Dry Food', category: 'dry', emoji: '🐔', price: 'Rs. 1,200', tag: '5kg Bag',
-            desc: 'A balanced dry kibble with real chicken as the #1 ingredient. Supports overall health, dental hygiene through its crunchy texture, and provides sustained energy throughout the day. Comes in a 5kg bag.'
+            id: 6, name: 'Felicia Kitten Chicken Jelly 85gm', category: 'catwet', image: 'images/products/feliciaKittenChickenJelly85Gm.jpg', price: 'Rs. 350', tag: 'Wet Food',
+            desc: 'Wet Food — Felicia Kitten Chicken Jelly 85gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 7, name: 'Grain-Free Salmon Dry Food', category: 'dry', emoji: '🍣', price: 'Rs. 1,450', tag: 'Grain-Free',
-            desc: 'A premium grain-free dry formula built on wild salmon. Rich in Omega-3 and Omega-6, ideal for pets with grain sensitivities. Supports healthy skin, coat, and lean muscle mass.'
+            id: 7, name: 'Whiskas Chicken can 400gms', category: 'catwet', image: 'images/products/whiskasChickenCan400Gms.jpg', price: 'Rs. 1,000', tag: 'Wet Food',
+            desc: 'Wet Food — Whiskas Chicken can 400gms. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 8, name: 'Lamb & Brown Rice Dry Food', category: 'dry', emoji: '🍚', price: 'Rs. 1,350', tag: 'Balanced',
-            desc: 'A well-balanced dry food combining lamb protein with wholesome brown rice. Provides a complete nutritional profile including fibre, antioxidants, and slow-release energy for all-day vitality.'
+            id: 8, name: 'Purrs Chicken Shreds in Broth', category: 'catwet', image: 'images/products/purrsChickenShredsInBroth.jpg', price: 'Rs. 850', tag: 'Wet Food',
+            desc: 'Wet Food — Purrs Chicken Shreds in Broth. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 9, name: 'Duck & Potato Dry Food', category: 'dry', emoji: '🦆', price: 'Rs. 1,500', tag: 'Hypoallergenic',
-            desc: 'A hypoallergenic formula using novel proteins (duck) and easily digestible potato. Recommended for pets with food intolerances or recurring skin and digestive issues.'
+            id: 9, name: 'Purrs Chicken in Broth', category: 'catwet', image: 'images/products/purrsChickenInBroth.jpg', price: 'Rs. 850', tag: 'Wet Food',
+            desc: 'Wet Food — Purrs Chicken in Broth. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 10, name: 'Senior Care Dry Food', category: 'dry', emoji: '👴', price: 'Rs. 1,280', tag: 'Senior 7+',
-            desc: 'Specially formulated for pets aged 7 and above. Contains joint-supporting glucosamine, reduced calories to manage weight, and added antioxidants to support immune function in older pets.'
+            id: 10, name: 'Royal Canin Kitten 400gm', category: 'catdry', image: 'images/products/royalCaninKitten400Gm.jpg', price: 'Rs. TBD', tag: 'Dry Food',
+            desc: 'Dry Food — Royal Canin Kitten 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 11, name: 'Indoor Cat Formula', category: 'cat', emoji: '🐈', price: 'Rs. 980', tag: 'Hairball Control',
-            desc: 'Designed for indoor cats with a more sedentary lifestyle. Features hairball-reducing fibre blend, controlled calorie levels, and added taurine for heart and eye health.'
+            id: 11, name: 'PETLINE Super Premium Adult Cat Sea Food Selection 400gm', category: 'catdry', image: 'images/products/petlineSuperPremiumAdultCatSeaFoodSelection400Gm.jpg', price: 'Rs. 1,250', tag: 'Dry Food',
+            desc: 'Dry Food — PETLINE Super Premium Adult Cat Sea Food Selection 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 12, name: 'Kitten Growth Formula', category: 'cat', emoji: '🐱', price: 'Rs. 1,050', tag: 'Kitten 0-12mo',
-            desc: 'A nutrient-dense formula tailored for kittens up to 12 months. High in DHA for brain development, calcium for strong bones, and extra protein to fuel rapid growth.'
+            id: 12, name: 'PETLINE Super Premium Adult Cat Food Chicken Selection 400gm', category: 'catdry', image: 'images/products/petlineSuperPremiumAdultCatFoodChickenSelection400Gm.jpg', price: 'Rs. 1,250', tag: 'Dry Food',
+            desc: 'Dry Food — PETLINE Super Premium Adult Cat Food Chicken Selection 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 13, name: 'Senior Cat Care', category: 'cat', emoji: '🧓', price: 'Rs. 1,100', tag: 'Senior 7+',
-            desc: 'Formulated for cats aged 7+, supporting kidney function, joint mobility, and immune health. Lower phosphorus levels protect ageing kidneys while antioxidants keep senior cats active.'
+            id: 13, name: 'Carnaval Premium Kitten Food With Chicken 400gm', category: 'catdry', image: 'images/products/carnavalPremiumKittenFoodWithChicken400Gm.jpg', price: 'Rs. 1,150', tag: 'Dry Food',
+            desc: 'Dry Food — Carnaval Premium Kitten Food With Chicken 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 14, name: 'Hairball Control Cat Food', category: 'cat', emoji: '🧶', price: 'Rs. 920', tag: 'Hairball',
-            desc: 'A targeted formula to help cats pass hairballs naturally. Enriched with plant-based fibres and digestive enzymes, it reduces hairball formation and promotes a healthy gut.'
+            id: 14, name: 'Carnaval Premium Adult Cat Food with Lamb 400gm', category: 'catdry', image: 'images/products/carnavalPremiumAdultCatFoodWithLamb400Gm.jpg', price: 'Rs. 1,000', tag: 'Dry Food',
+            desc: 'Dry Food — Carnaval Premium Adult Cat Food with Lamb 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 15, name: 'Sensitive Stomach Cat Food', category: 'cat', emoji: '🤢', price: 'Rs. 1,150', tag: 'Sensitive',
-            desc: 'Gentle on delicate digestive systems with highly digestible proteins and prebiotic fibres. Reduces vomiting and loose stools while delivering complete daily nutrition for adult cats.'
+            id: 15, name: 'Carnaval Premium Adult Cat Food with Gourmet 400gm', category: 'catdry', image: 'images/products/carnavalPremiumAdultCatFoodWithGourmet400Gm.jpg', price: 'Rs. 1,000', tag: 'Dry Food',
+            desc: 'Dry Food — Carnaval Premium Adult Cat Food with Gourmet 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 16, name: 'Large Breed Dog Food', category: 'dog', emoji: '🐕', price: 'Rs. 1,400', tag: 'Large Breed',
-            desc: 'Crafted for large breeds with bigger caloric and joint needs. Contains glucosamine, chondroitin, and L-carnitine to maintain healthy joints and ideal body weight in bigger dogs.'
+            id: 16, name: 'Carnaval Premium Adult Cat Food with Chicken 400gm', category: 'catdry', image: 'images/products/carnavalPremiumAdultCatFoodWithChicken400GmV2.jpg', price: 'Rs. 1,000', tag: 'Dry Food',
+            desc: 'Dry Food — Carnaval Premium Adult Cat Food with Chicken 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 17, name: 'Small Breed Dog Food', category: 'dog', emoji: '🐩', price: 'Rs. 1,250', tag: 'Small Breed',
-            desc: 'Small kibble size perfect for tiny mouths. High energy density meets the fast metabolism of small breeds, with added nutrients for dental health, coat shine, and digestive comfort.'
+            id: 17, name: 'BonaCibo Kitten 1.5 Kg', category: 'catdry', image: 'images/products/bonaCiboKitten15Kg.jpg', price: 'Rs. 3,250', tag: 'Dry Food',
+            desc: 'Dry Food — BonaCibo Kitten 1.5 Kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 18, name: 'Puppy Growth Formula', category: 'dog', emoji: '🐶', price: 'Rs. 1,300', tag: 'Puppy 0-12mo',
-            desc: 'Everything a growing puppy needs in one bowl. Enriched with DHA, calcium, and immune-boosting antioxidants to support brain development, bone strength, and a healthy start to life.'
+            id: 18, name: 'BonaCibo Cat Food 2kg', category: 'catdry', image: 'images/products/bonaCiboCatFood2Kg.jpg', price: 'Rs. 4,150', tag: 'Dry Food',
+            desc: 'Dry Food — BonaCibo Cat Food 2kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 19, name: 'Senior Dog Care', category: 'dog', emoji: '👴', price: 'Rs. 1,350', tag: 'Senior 7+',
-            desc: 'Tailored for dogs aged 7 and older. Features joint-supportive nutrients, easily digestible proteins, and antioxidant-rich ingredients to keep senior dogs comfortable and mobile.'
+            id: 19, name: 'Royal Canin Mother and Baby Cat 400gm', category: 'catdry', image: 'images/products/royalCaninMotherAndBabyCat400Gm.jpg', price: 'Rs. 2,550', tag: 'Dry Food',
+            desc: 'Dry Food — Royal Canin Mother and Baby Cat 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 20, name: 'Active Dog Formula', category: 'dog', emoji: '🏃', price: 'Rs. 1,450', tag: 'High Energy',
-            desc: 'A high-performance formula for active and working dogs. Elevated protein and fat content fuels endurance and muscle recovery, keeping your energetic companion at peak performance.'
+            id: 20, name: 'Royal Canin Hair and Skin Care 400gm', category: 'catdry', image: 'images/products/royalCaninHairAndSkinCare400Gm.jpg', price: 'Rs. 2,550', tag: 'Dry Food',
+            desc: 'Dry Food — Royal Canin Hair and Skin Care 400gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 21, name: 'Interactive Dog Toy', category: 'other', emoji: '🧸', price: 'Rs. 850', tag: 'Toys',
-            desc: 'A durable interactive toy that stimulates your dog mentally and physically. Helps reduce boredom, separation anxiety, and destructive behaviour. Safe, non-toxic materials for all dog sizes.'
+            id: 21, name: 'BIG PAW Dog Food 3kg', category: 'dog', image: 'images/products/bigPawDogFood3Kg.jpg', price: 'Rs. 2,600', tag: 'Dog Food',
+            desc: 'Dog Food — BIG PAW Dog Food 3kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 22, name: 'Orthopedic Pet Bed', category: 'other', emoji: '🛏️', price: 'Rs. 3,200', tag: 'Beds',
-            desc: 'A memory foam orthopedic bed designed to relieve pressure on joints and muscles. Ideal for senior pets or those recovering from surgery. Removable, washable cover for easy cleaning.'
+            id: 22, name: 'BonaCibo Dog Food 4Kg', category: 'dog', image: 'images/products/bonaCiboDogFood4Kg.jpg', price: 'Rs. 3,649', tag: 'Dog Food',
+            desc: 'Dog Food — BonaCibo Dog Food 4Kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 23, name: 'Grooming Brush Set', category: 'other', emoji: '🪥', price: 'Rs. 650', tag: 'Grooming',
-            desc: 'A complete grooming kit including a slicker brush, detangling comb, and deshedding tool. Reduces shedding, prevents matting, and keeps your pet\'s coat healthy and gleaming.'
+            id: 23, name: 'BonaCibo Puppy Food 3 Kg', category: 'dog', image: 'images/products/bonaCiboPuppyFood3Kg.jpg', price: 'Rs. 2,850', tag: 'Dog Food',
+            desc: 'Dog Food — BonaCibo Puppy Food 3 Kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 24, name: 'Nylon Collar & Leash Set', category: 'other', emoji: '🦮', price: 'Rs. 890', tag: 'Accessories',
-            desc: 'A sturdy yet comfortable nylon collar and matching leash set. Adjustable fit for most dog sizes, with a quick-release buckle and reflective stitching for safe evening walks.'
+            id: 24, name: 'Monello Dog Food Traditional 15kg', category: 'dog', image: 'images/products/monelloDogFoodTraditional15Kg.jpg', price: 'Rs. 19,150', tag: 'Dog Food',
+            desc: 'Dog Food — Monello Dog Food Traditional 15kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 25, name: 'Stainless Steel Bowls (2pc)', category: 'other', emoji: '🍽️', price: 'Rs. 720', tag: 'Bowls',
-            desc: 'A set of two food-grade stainless steel bowls — one for food, one for water. Non-slip base prevents sliding, dishwasher safe, and resistant to bacteria build-up unlike plastic bowls.'
+            id: 25, name: 'Reflex Dog Beef and Rice 3kg', category: 'dog', image: 'images/products/reflexDogBeefAndRice3Kg.jpg', price: 'Rs. 3,750', tag: 'Dog Food',
+            desc: 'Dog Food — Reflex Dog Beef and Rice 3kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }, {
-            id: 26, name: 'Joint Supplement Chews', category: 'other', emoji: '💊', price: 'Rs. 1,500', tag: 'Supplements',
-            desc: 'Vet-formulated chewable supplements with glucosamine, chondroitin, and MSM. Supports joint flexibility, reduces stiffness, and aids mobility in dogs and cats of all ages.'
+            id: 26, name: 'Organo Dog Food 3kg', category: 'dog', image: 'images/products/organoDogFood3Kg.jpg', price: 'Rs. 2,550', tag: 'Dog Food',
+            desc: 'Dog Food — Organo Dog Food 3kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 27, name: 'GROOVE Beef Dog Food 1.2kg', category: 'dog', image: 'images/products/grooveBeefDogFood12Kg.jpg', price: 'Rs. 1,150', tag: 'Dog Food',
+            desc: 'Dog Food — GROOVE Beef Dog Food 1.2kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 28, name: 'GROOVE Chicken Dog Food 1.2kg', category: 'dog', image: 'images/products/grooveChickenDogFood12Kg.jpg', price: 'Rs. 1,150', tag: 'Dog Food',
+            desc: 'Dog Food — GROOVE Chicken Dog Food 1.2kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 29, name: 'Nutri Paws Dog Food 3kg', category: 'dog', image: 'images/products/nutriPawsDogFood3Kg.jpg', price: 'Rs. 2,350', tag: 'Dog Food',
+            desc: 'Dog Food — Nutri Paws Dog Food 3kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 30, name: 'Procan Adult Dog Complete Formula Food 3kg', category: 'dog', image: 'images/products/procanAdultDogCompleteFormulaFood3Kg.jpg', price: 'Rs. 2,350', tag: 'Dog Food',
+            desc: 'Dog Food — Procan Adult Dog Complete Formula Food 3kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 31, name: 'Procan Power Performance Dog Food 15kg', category: 'dog', image: 'images/products/procanPowerPerformanceDogFood15Kg.jpg', price: 'Rs. 14,650', tag: 'Dog Food',
+            desc: 'Dog Food — Procan Power Performance Dog Food 15kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 32, name: 'Birdie Seeds Mix - Large Birds 1kg', category: 'birds', image: 'images/products/birdieSeedsMixLargeBirds1Kg.jpg', price: 'Rs. 700', tag: 'Birds',
+            desc: 'Birds — Birdie Seeds Mix - Large Birds 1kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 33, name: 'Birdie Seeds Mix - Small Birds 1kg', category: 'birds', image: 'images/products/birdieSeedsMixSmallBirds1Kg.jpg', price: 'Rs. 600', tag: 'Birds',
+            desc: 'Birds — Birdie Seeds Mix - Small Birds 1kg. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 34, name: 'Birds Nesting Coconut 100gm', category: 'birds', image: 'images/products/birdsNestingCoconut100Gm.jpg', price: 'Rs. 150', tag: 'Birds',
+            desc: 'Birds — Birds Nesting Coconut 100gm. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 35, name: 'Flower Pet Bed', category: 'beds', image: 'images/products/flowerPetBed.jpg', price: 'Rs. 2,150', tag: 'Beds',
+            desc: 'Beds — Flower Pet Bed. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 36, name: 'Printed Bed for Cat', category: 'beds', image: 'images/products/printedBedForCat.jpg', price: 'Rs. 2,150', tag: 'Beds',
+            desc: 'Beds — Printed Bed for Cat. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 37, name: 'Round Bed for Cat', category: 'beds', image: 'images/products/roundBedForCat.jpg', price: 'Rs. 3,150', tag: 'Beds',
+            desc: 'Beds — Round Bed for Cat. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 38, name: 'Rectangular Bed for Pets', category: 'beds', image: 'images/products/rectangularBedForPets.jpg', price: 'Rs. 3,150', tag: 'Beds',
+            desc: 'Beds — Rectangular Bed for Pets. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 39, name: 'Dental Chew Ring Toy', category: 'dogtoys', image: 'images/products/dentalChewRingToy.jpg', price: 'Rs. 400', tag: 'Dog Toys',
+            desc: 'Dog Toys — Dental Chew Ring Toy. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 40, name: 'Dog Double Ball Rope Toy', category: 'dogtoys', image: 'images/products/dogDoubleBallRopeToy.jpg', price: 'Rs. 600', tag: 'Dog Toys',
+            desc: 'Dog Toys — Dog Double Ball Rope Toy. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 41, name: 'Dog Dumble Play Toy', category: 'dogtoys', image: 'images/products/dogDumblePlayToy.jpg', price: 'Rs. 550', tag: 'Dog Toys',
+            desc: 'Dog Toys — Dog Dumble Play Toy. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 42, name: 'Self-Playing Rubber Ball Toy with Suction Cup', category: 'dogtoys', image: 'images/products/selfPlayingRubberBallToyWithSuctionCup.jpg', price: 'Rs. 950', tag: 'Dog Toys',
+            desc: 'Dog Toys — Self-Playing Rubber Ball Toy with Suction Cup. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 43, name: 'Dougez Bone Chew', category: 'dogtoys', image: 'images/products/dougezBoneChew.jpg', price: 'Rs. 1,350', tag: 'Dog Toys',
+            desc: 'Dog Toys — Dougez Bone Chew. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 44, name: 'Dougez Frisbee Chew', category: 'dogtoys', image: 'images/products/dougezFrisbeeChew.jpg', price: 'Rs. 1,450', tag: 'Dog Toys',
+            desc: 'Dog Toys — Dougez Frisbee Chew. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 45, name: '3 Catnip Mouse Set', category: 'cattoys', image: 'images/products/3CatnipMouseSet.jpg', price: 'Rs. 700', tag: 'Cat Toys',
+            desc: 'Cat Toys — 3 Catnip Mouse Set. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 46, name: 'Cat Balls - Pack of 6', category: 'cattoys', image: 'images/products/catBallsPackOf6.jpg', price: 'Rs. 550', tag: 'Cat Toys',
+            desc: 'Cat Toys — Cat Balls - Pack of 6. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 47, name: 'Cat Cardboard Scratching Pad', category: 'cattoys', image: 'images/products/catCardboardScratchingPad.jpg', price: 'Rs. 700', tag: 'Cat Toys',
+            desc: 'Cat Toys — Cat Cardboard Scratching Pad. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 48, name: 'Cat Playing Circle with Teaser Toy', category: 'cattoys', image: 'images/products/catPlayingCircleWithTeaserToy.jpg', price: 'Rs. 1,000', tag: 'Cat Toys',
+            desc: 'Cat Toys — Cat Playing Circle with Teaser Toy. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 49, name: 'Cat Scratcher Cardboard Bed', category: 'cattoys', image: 'images/products/catScratcherCardboardBed.jpg', price: 'Rs. 3,150', tag: 'Cat Toys',
+            desc: 'Cat Toys — Cat Scratcher Cardboard Bed. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 50, name: 'Cat Teaser Stick with Mouse Bell', category: 'cattoys', image: 'images/products/catTeaserStickWithMouseBell.jpg', price: 'Rs. 350', tag: 'Cat Toys',
+            desc: 'Cat Toys — Cat Teaser Stick with Mouse Bell. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 51, name: 'Breathable Pet Harness with Leash - Small', category: 'accessories', image: 'images/products/breathablePetHarnessWithLeashSmall.jpg', price: 'Rs. 650', tag: 'Accessories',
+            desc: 'Accessories — Breathable Pet Harness with Leash - Small. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 52, name: 'Breathable Pet Harness with Leash - Medium', category: 'accessories', image: 'images/products/breathablePetHarnessWithLeashMedium.jpg', price: 'Rs. 700', tag: 'Accessories',
+            desc: 'Accessories — Breathable Pet Harness with Leash - Medium. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 53, name: 'Breathable Pet Harness with Leash - Large', category: 'accessories', image: 'images/products/breathablePetHarnessWithLeashLarge.jpg', price: 'Rs. 750', tag: 'Accessories',
+            desc: 'Accessories — Breathable Pet Harness with Leash - Large. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 54, name: 'Breathable Pet Harness with Leash - XL', category: 'accessories', image: 'images/products/breathablePetHarnessWithLeashXl.jpg', price: 'Rs. 800', tag: 'Accessories',
+            desc: 'Accessories — Breathable Pet Harness with Leash - XL. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 55, name: 'Collars with Paw Print & Bell', category: 'accessories', image: 'images/products/collarsWithPawPrintAndBell.jpg', price: 'Rs. 250', tag: 'Accessories',
+            desc: 'Accessories — Collars with Paw Print & Bell. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 56, name: 'Pet ID Tags - Heart Shape', category: 'accessories', image: 'images/products/petIdTagsHeartShape.jpg', price: 'Rs. 250', tag: 'Accessories',
+            desc: 'Accessories — Pet ID Tags - Heart Shape. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 57, name: 'Pet ID Tags - Bone Shape', category: 'accessories', image: 'images/products/petIdTagsBoneShape.jpg', price: 'Rs. 250', tag: 'Accessories',
+            desc: 'Accessories — Pet ID Tags - Bone Shape. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 58, name: 'Reflective Collars with Bell', category: 'accessories', image: 'images/products/reflectiveCollarsWithBell.jpg', price: 'Rs. 250', tag: 'Accessories',
+            desc: 'Accessories — Reflective Collars with Bell. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 59, name: 'Dog Leash with Rubber Handle', category: 'accessories', image: 'images/products/dogLeashWithRubberHandle.jpg', price: 'Rs. 750', tag: 'Accessories',
+            desc: 'Accessories — Dog Leash with Rubber Handle. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 60, name: 'Dog Reflective Harness and Leash Set', category: 'accessories', image: 'images/products/dogReflectiveHarnessAndLeashSet.jpg', price: 'Rs. 1,350', tag: 'Accessories',
+            desc: 'Accessories — Dog Reflective Harness and Leash Set. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 61, name: 'Pet Carrier Small', category: 'accessories', image: 'images/products/petCarrierSmall.jpg', price: 'Rs. 3,650', tag: 'Accessories',
+            desc: 'Accessories — Pet Carrier Small. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 62, name: 'Pet Carrier Bag Printed', category: 'accessories', image: 'images/products/petCarrierBagPrinted.jpg', price: 'Rs. 3,450', tag: 'Accessories',
+            desc: 'Accessories — Pet Carrier Bag Printed. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 63, name: 'Pet Carrier Bag Astronaut', category: 'accessories', image: 'images/products/petCarrierBagAstronaut.jpg', price: 'Rs. 3,350', tag: 'Accessories',
+            desc: 'Accessories — Pet Carrier Bag Astronaut. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 64, name: 'Pet Carrier Backpack Plain', category: 'accessories', image: 'images/products/petCarrierBackpackPlain.jpg', price: 'Rs. 3,450', tag: 'Accessories',
+            desc: 'Accessories — Pet Carrier Backpack Plain. Quality, vet-approved product available at Wildlife & Pet Care Center.'
+        }, {
+            id: 65, name: 'Net Pet Carrier Bag', category: 'accessories', image: 'images/products/netPetCarrierBag.jpg', price: 'Rs. 2,650', tag: 'Accessories',
+            desc: 'Accessories — Net Pet Carrier Bag. Quality, vet-approved product available at Wildlife & Pet Care Center.'
         }];
 
         // ─── GALLERY DATA ──────────────────────────────────────────────
@@ -2839,7 +2960,7 @@
             const filtered = category === 'all' ? products : products.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => `
                     <div class="store-product" style="cursor:pointer" onclick="openProductModal(${p.id})">
-                        <div class="store-product-img" style="font-size:3.5rem;background:var(--muted);display:flex;align-items:center;justify-content:center">${p.emoji}</div>
+                        <div class="store-product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='🐾';this.parentElement.style.cssText='font-size:3.5rem;background:var(--muted);display:flex;align-items:center;justify-content:center';"></div>
                         <div class="store-product-body">
                             <h4>${p.name}</h4>
                             <div class="price">${p.price}</div>
@@ -2853,7 +2974,7 @@
         function openProductModal(id) {
             const p = products.find(x => x.id === id);
             if (!p) return;
-            document.getElementById('pmEmoji').textContent = p.emoji;
+            document.getElementById('pmEmoji').innerHTML = `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.parentElement.innerHTML='🐾';this.parentElement.style.fontSize='4.5rem';">`;
             document.getElementById('pmTag').textContent = p.tag;
             document.getElementById('pmName').textContent = p.name;
             document.getElementById('pmPrice').textContent = p.price;
